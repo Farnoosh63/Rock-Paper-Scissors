@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="testRockPaperScissors" tests="8" skipped="0" failures="1" errors="0" timestamp="2016-04-20T18:02:11" hostname="epicodus-39.local" time="0.006">
+<testsuite name="testRockPaperScissors" tests="8" skipped="0" failures="1" errors="0" timestamp="2016-04-20T18:26:42" hostname="epicodus-39.local" time="0.003">
   <properties/>
   <testcase name="checkWinnerOnePlayer_appAcceptUserInputAndGenerateRandomNumber_pass" classname="testRockPaperScissors" time="0.001"/>
   <testcase name="generateChoice_appAcceptUserInputAndGenerateRandomNumber_true" classname="testRockPaperScissors" time="0.0"/>
-  <testcase name="checkWinnerOnePlayer_checksWinnerBetweenUserInputAndGeneratedRandomNumber_player2wins" classname="testRockPaperScissors" time="0.0"/>
-  <testcase name="checkWinnerTwoPlayers_appAcceptingUserInputReturnOutput_true" classname="testRockPaperScissors" time="0.0"/>
-  <testcase name="checkWinnerTwoPlayers_checksWinnerBetweenDifferentInput_player2wins" classname="testRockPaperScissors" time="0.001"/>
-  <testcase name="checkWinnerTwoPlayers_checksWinnerBetweenSameInput_tie" classname="testRockPaperScissors" time="0.0"/>
-  <testcase name="checkWinnerTwoPlayers_appAccepting2UserInputsReturnOutput_true" classname="testRockPaperScissors" time="0.0"/>
-  <testcase name="checkWinnerOnePlayer_checksWinnerBetweenSameInputWithUserInputAndGeneratedRandomNumber_tie" classname="testRockPaperScissors" time="0.002">
-    <failure message="org.junit.ComparisonFailure: expected:&lt;[tie]&gt; but was:&lt;[pass]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[tie]&gt; but was:&lt;[pass]&gt;
+  <testcase name="checkWinnerOnePlayer_checksWinnerBetweenUserInputAndGeneratedRandomNumber_player2wins" classname="testRockPaperScissors" time="0.001">
+    <failure message="org.junit.ComparisonFailure: expected:&lt;[player2 wins]&gt; but was:&lt;[tie]&gt;" type="org.junit.ComparisonFailure">org.junit.ComparisonFailure: expected:&lt;[player2 wins]&gt; but was:&lt;[tie]&gt;
 	at org.junit.Assert.assertEquals(Assert.java:115)
 	at org.junit.Assert.assertEquals(Assert.java:144)
-	at testRockPaperScissors.checkWinnerOnePlayer_checksWinnerBetweenSameInputWithUserInputAndGeneratedRandomNumber_tie(testRockPaperScissors.java:60)
+	at testRockPaperScissors.checkWinnerOnePlayer_checksWinnerBetweenUserInputAndGeneratedRandomNumber_player2wins(testRockPaperScissors.java:68)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -58,6 +53,11 @@
 	at java.lang.Thread.run(Thread.java:745)
 </failure>
   </testcase>
+  <testcase name="checkWinnerTwoPlayers_appAcceptingUserInputReturnOutput_true" classname="testRockPaperScissors" time="0.0"/>
+  <testcase name="checkWinnerTwoPlayers_checksWinnerBetweenDifferentInput_player2wins" classname="testRockPaperScissors" time="0.0"/>
+  <testcase name="checkWinnerTwoPlayers_checksWinnerBetweenSameInput_tie" classname="testRockPaperScissors" time="0.0"/>
+  <testcase name="checkWinnerTwoPlayers_appAccepting2UserInputsReturnOutput_true" classname="testRockPaperScissors" time="0.001"/>
+  <testcase name="checkWinnerOnePlayer_checksWinnerBetweenSameInputWithUserInputAndGeneratedRandomNumber_tie" classname="testRockPaperScissors" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

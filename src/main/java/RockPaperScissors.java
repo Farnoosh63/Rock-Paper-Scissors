@@ -8,31 +8,54 @@ import static spark.Spark.*;
 
 public class RockPaperScissors {
   public static void main(String[] args) {
-    // get("/", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "templates/home.vtl");
-    //   return new ModelAndView(model, "templates/layout.vtl");
-    // }, new VelocityTemplateEngine());
-    //
-    // get("/detector", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //
-    //   String userInput = request.queryParams("number");
-    //   NumbersToWords newNumbers = new NumbersToWords();
-    //   String convertedNumber = newNumbers.integerConverter(userInput);
-    //   model.put("convertedNumber", convertedNumber);
-    //
-    //   model.put("template", "templates/detector.vtl");
-    //   return new ModelAndView(model, "templates/layout.vtl");
-    // }, new VelocityTemplateEngine());
+    get("/twoplayer", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/twoplayer.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+
+    get("/", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+
+    get("/detector", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      RockPaperScissors newGame = new RockPaperScissors();
+      String input1 = request.queryParams("input1");
+      String input2 = request.queryParams("input2");
+      String displayWinner = newGame.checkWinnerTwoPlayers(input1, input2);
+
+      model.put("input1", input1);
+      model.put("input2", input2);
+      model.put("displayWinner", displayWinner);
+
+
+      model.put("template", "templates/detector.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+
+    get("/computer", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      RockPaperScissors newGame = new RockPaperScissors();
+      String input1 = request.queryParams("input1");
+      String input2 = newGame.generateChoice();
+      String displayWinner = newGame.checkWinnerOnePlayer(input1);
+
+
+      model.put("input1", input1);
+      model.put("input2", input2);
+      model.put("displayWinner", displayWinner);
+
+
+      model.put("template", "templates/computer.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
   }
 
-  // public static String rpsGame(String input1, String input2) {
-  //
-  //
-  //   //String[]choices = {"rock", "paper", "scissors"};
-  //
-  // }
 
   public static String generateChoice(){
     Random myRandomGenerator = new Random();
@@ -53,13 +76,13 @@ public class RockPaperScissors {
      String rock = "rock";
      String paper = "paper";
      String scissor = "scissor";
-     if (input1 == randomInput){
+     if (input1.equals(randomInput)){
       return "tie";
-    } else if(input1 == rock && randomInput == paper){
+    } else if(input1.equals("rock") && randomInput.equals("paper")){
      return "player2 wins";
-    } else if(input1 == rock && randomInput == scissor){
+    } else if(input1.equals("rock") && randomInput.equals("scissor")){
       return "player1 wins";
-    } else if(input1 == paper && randomInput == scissor){
+    } else if(input1.equals("paper") && randomInput.equals("scissor")){
       return "player2 wins";
     }else {
       return "pass";
@@ -71,20 +94,19 @@ public class RockPaperScissors {
     String rock = "rock";
     String paper = "paper";
     String scissor = "scissor";
-    if(input1 == input2){
-      return "tie";
-    } else if(input1 == rock && input2 == paper){
-      return "player2 wins";
-    } else if(input1 == rock && input2 == scissor){
-      return "player1 wins";
-    } else if(input1 == paper && input2 == scissor){
-      return "player2 wins";
-  //  } else if(input1 == rock && input2 == "") {
-  //    input2 == generateNumber();
-      //checkwinner again
-    }else {
-      return "true";
+    String result = "";
+    if(input1.equals(input2)){
+      result = "tie";
+    } else if(input1.equals("rock") && input2.equals("paper")
+              || input1.equals("paper") && input2.equals("scissor")
+              || input1.equals("scissor") && input2.equals("rock")){
+      result = "player2 wins";
+    } else if(input1.equals("rock") && input2.equals("scissor")
+              || input1.equals("scissor") && input2.equals("paper")
+              || input1.equals("paper") && input2.equals("rock")){
+      result = "player1 wins";
     }
+    return result;
   }
 
 }
