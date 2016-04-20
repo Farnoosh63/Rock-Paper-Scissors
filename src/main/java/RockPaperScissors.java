@@ -14,6 +14,12 @@ public class RockPaperScissors {
       return new ModelAndView(model, "templates/layout.vtl");
     }, new VelocityTemplateEngine());
 
+    get("/computer", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/computer.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+
     get("/", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/index.vtl");
@@ -37,13 +43,13 @@ public class RockPaperScissors {
       return new ModelAndView(model, "templates/layout.vtl");
     }, new VelocityTemplateEngine());
 
-    get("/computer", (request, response) -> {
+    get("/computerGameDetector", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
 
       RockPaperScissors newGame = new RockPaperScissors();
       String input1 = request.queryParams("input1");
       String input2 = newGame.generateChoice();
-      String displayWinner = newGame.checkWinnerOnePlayer(input1);
+      String displayWinner = newGame.checkWinnerOnePlayer(input1, input2);
 
 
       model.put("input1", input1);
@@ -51,7 +57,7 @@ public class RockPaperScissors {
       model.put("displayWinner", displayWinner);
 
 
-      model.put("template", "templates/computer.vtl");
+      model.put("template", "templates/computerGameDetector.vtl");
       return new ModelAndView(model, "templates/layout.vtl");
     }, new VelocityTemplateEngine());
   }
@@ -66,27 +72,28 @@ public class RockPaperScissors {
     }else if (randomNum == 1) {
       computerChoice = "paper";
     }else if (randomNum == 2) {
-      computerChoice = "scissors";
+      computerChoice = "scissor";
     }
     return computerChoice;
-    }
+  }
 
-   public static String checkWinnerOnePlayer(String input1) {
-     String randomInput = generateChoice();
+   public static String checkWinnerOnePlayer(String input1, String input2) {
+     String result = "";
      String rock = "rock";
      String paper = "paper";
      String scissor = "scissor";
-     if (input1.equals(randomInput)){
-      return "tie";
-    } else if(input1.equals("rock") && randomInput.equals("paper")){
-     return "player2 wins";
-    } else if(input1.equals("rock") && randomInput.equals("scissor")){
-      return "player1 wins";
-    } else if(input1.equals("paper") && randomInput.equals("scissor")){
-      return "player2 wins";
-    }else {
-      return "pass";
+     if (input1.equals(input2)){
+      result= "tie";
+    } else if((input1.equals("rock") && input2.equals("paper"))
+              || (input1.equals("paper") && input2.equals("scissor"))
+              || (input1.equals("scissor") && input2.equals("rock"))){
+     result= "Computer wins";
+   } else if((input1.equals("rock") && input2.equals("scissor"))
+              || (input1.equals("scissor") && input2.equals("paper"))
+              || (input1.equals("paper") && input2.equals("rock"))){
+      result= "Player1 wins";
     }
+    return result;
   }
 
 
