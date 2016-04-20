@@ -8,6 +8,7 @@ import static spark.Spark.*;
 
 public class RockPaperScissors {
   public static void main(String[] args) {
+    staticFileLocation("/public");
     get("/twoplayer", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
       model.put("template", "templates/twoplayer.vtl");
