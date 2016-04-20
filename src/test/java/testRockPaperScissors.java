@@ -44,9 +44,33 @@ public class testRockPaperScissors {
   }
   //app accepts user input and generates a random input and returns an output
 
+  @Test
+  public void checkWinnerOnePlayer_appAcceptUserInputAndGenerateRandomNumber_pass() {
+    RockPaperScissors testRockPaperScissors = new RockPaperScissors();
+    String expected = "pass";
+    assertEquals(expected, testRockPaperScissors.checkWinnerOnePlayer("input1"));
+  }
+
+
+  //if user plays a move that is the sameas generated input, the app returns tie.
+  @Test
+  public void checkWinnerOnePlayer_checksWinnerBetweenSameInputWithUserInputAndGeneratedRandomNumber_tie() {
+    RockPaperScissors testRockPaperScissors = new RockPaperScissors();
+    String expected = "tie";
+    assertEquals(expected, testRockPaperScissors.checkWinnerOnePlayer("rock"));
+  }
+
   //if user plays a move that beats generated input, the app returns that player wins.
+  @Test
+  public void checkWinnerOnePlayer_checksWinnerBetweenUserInputAndGeneratedRandomNumber_player2wins() {
+    RockPaperScissors testRockPaperScissors = new RockPaperScissors();
+    String expected = "player2 wins";
+    assertEquals(expected, testRockPaperScissors.checkWinnerOnePlayer("rock"));
+  }
 
   //if generated input plays a move that beats player, the app returns that computer wins.
+  //Our last test check the random generated to see if the player wins or tie
+  //then we do not vhevk the last option if the computer generator beats the player 
 
 
 }

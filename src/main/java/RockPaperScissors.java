@@ -49,9 +49,22 @@ public class RockPaperScissors {
     }
 
    public static String checkWinnerOnePlayer(String input1) {
-     
-   }
-
+     String randomInput = generateChoice();
+     String rock = "rock";
+     String paper = "paper";
+     String scissor = "scissor";
+     if (input1 == randomInput){
+      return "tie";
+    } else if(input1 == rock && randomInput == paper){
+     return "player2 wins";
+    } else if(input1 == rock && randomInput == scissor){
+      return "player1 wins";
+    } else if(input1 == paper && randomInput == scissor){
+      return "player2 wins";
+    }else {
+      return "pass";
+    }
+  }
 
 
   public static String checkWinnerTwoPlayers(String input1, String input2){
